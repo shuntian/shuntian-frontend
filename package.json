@@ -1,0 +1,23 @@
+{
+  "name": "shuntian-frontend",
+  "version": "1.0.0",
+  "description": "shuntian work record",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "mkdocs serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shuntian/shuntian-frontend.git"
+  },
+  "author": "shuntian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shuntian/shuntian-frontend/issues"
+  },
+  "homepage": "https://github.com/shuntian/shuntian-frontend#readme"
+}
