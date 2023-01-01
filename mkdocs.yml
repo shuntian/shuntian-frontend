@@ -1,1 +1,30 @@
-site_name: ShunTian Frontend
+site_name: ShunTian 前端
+nav:
+  - 简介: index.md
+  - 知识积累:
+    - 常用工具: 
+      - 简介: 01_knowledge/01_tools/index.md
+      - python 安装与卸载: 01_knowledge/01_tools/python安装与卸载.md
+    - 功能规则: 
+      - 简介: 01_knowledge/02_features/index.md
+    - 最佳实践: 
+      - 简介01_knowledge/03_best_practices/index.md
+    - 流程规范: 
+      - 简介: 01_knowledge/04_process_specification/index.md
+    - 常见方案: 
+      - 简介: 01_knowledge/05_plan/index.md
+    - 业务推进: 
+      - 简介: 01_knowledge/06_manage/index.md
+  - 评价体系: 02_evaluation/index.md
+  - 方法论: 03_methodology/index.md
+  - 思维成长: 04_thinking/index.md
+  - 关于: about.md
+theme: 
+  name: windmill
+  locale: zh_CN
+  include_search_page: false
+extra_css:
+   - 00_assets/css/extra.css
+extra:
+  version: 1.0
+  article_nav_top: false

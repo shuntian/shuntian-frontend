@@ -1,0 +1,11 @@
+body {
+  font-size: 16px;
+}
+
+.wm-top-title br {
+  display: none;
+}
+
+.wm-top-title span {
+  vertical-align: 2px;
+}
