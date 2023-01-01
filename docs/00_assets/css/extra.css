@@ -10,6 +10,15 @@ body {
   vertical-align: 2px;
 }
 
+html, 
+body {
+  height: 100%;
+}
+
+div.wm-page-content {
+  min-height: calc(100% - 30px);
+}
+
 .wm-page-content {
   max-width: 800px;
   position: relative;
