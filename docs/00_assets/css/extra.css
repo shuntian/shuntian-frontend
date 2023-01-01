@@ -9,3 +9,8 @@ body {
 .wm-top-title span {
   vertical-align: 2px;
 }
+
+.wm-page-content {
+  max-width: 800px;
+  position: relative;
+}
