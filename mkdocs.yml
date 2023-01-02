@@ -5,7 +5,7 @@ nav:
     - 常用工具: 
       - 简介: 01_knowledge/01_tools/index.md
       - python 安装与卸载: 01_knowledge/01_tools/01_python安装与卸载.md
-      - python 安装与卸载: 01_knowledge/01_tools/02_mac终端命令前缀修改_zsh.md
+      - Mac 终端命令前缀修改 zsh: 01_knowledge/01_tools/02_mac终端命令前缀修改_zsh.md
     - 功能规则: 
       - 简介: 01_knowledge/02_features/index.md
     - 最佳实践: 
