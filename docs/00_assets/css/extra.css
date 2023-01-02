@@ -15,6 +15,10 @@ body {
   height: 100%;
 }
 
+.wm-toc-hidden > .wm-toc-pane {
+    margin-left: -350px;
+}
+
 div.wm-page-content {
   min-height: calc(100% - 30px);
 }
