@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "mkdocs serve"
+    "start": "mkdocs serve -a 127.0.0.1:8080"
   },
   "repository": {
     "type": "git",
