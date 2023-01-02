@@ -14,7 +14,7 @@
 ### 变量定义位置
 /etc/zshrc 中的 PS1 变量就是用来设置前缀显示的, 内容如下图
 
-![Img](/docs/00_assets/images/mac终端命令前缀修改_zsh.md/img-20230102192658.png)
+![Img](./../../00_assets/images/02_mac终端命令前缀修改_zsh.md/img-20230102195621.png)
 
 
 ### 符号表示含义
