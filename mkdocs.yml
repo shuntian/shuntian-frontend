@@ -1,4 +1,6 @@
 site_name: ShunTian 前端
+repo_url: https://github.com/shuntian/shuntian-frontend.git
+repo_name: GitHub
 nav:
   - 简介: index.md
   - 知识积累:
