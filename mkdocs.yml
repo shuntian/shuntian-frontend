@@ -10,7 +10,7 @@ nav:
       - Mac 终端命令前缀修改 zsh: 01_knowledge/01_tools/02_mac终端命令前缀修改_zsh.md
     - 功能规则: 
       - 简介: 01_knowledge/02_features/index.md
-      - localeCompare 函数的问题: 01_knowledge/02_features/01_localeCompare的问题.md
+      - 中文英文数字混排实现方案: 01_knowledge/02_features/01_中文英文数字混排实现方案.md
       - 字符串比较: 01_knowledge/02_features/02_字符串排序.md
     - 最佳实践: 
       - 简介01_knowledge/03_best_practices/index.md
