@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>中文英文数字混排实现方案 - ShunTian 前端</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../00_assets/css/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "js \u4e2d\u6587, \u82f1\u6587, \u6570\u5b57\u6df7\u6392\u5b9e\u73b0\u65b9\u6848", url: "#_top", children: [
+              {title: "numer \u6570\u7ec4\u6392\u5e8f", url: "#numer" },
+              {title: "\u82f1\u6587\u5b57\u7b26\u4e32\u6392\u5e8f", url: "#_1" },
+              {title: "\u4e2d\u6587\u5b57\u7b26", url: "#_4" },
+              {title: "\u4e2d\u6587, \u82f1\u6587, \u6570\u5b57\u5b57\u7b26\u4e32\u6df7\u6392", url: "#_5" },
+              {title: "\u4e2d\u6587, \u82f1\u6587, \u6570\u5b57\u5b57\u7b26\u4e32\u6df7\u6392, \u6309\u7167\u6570\u503c\u5927\u5c0f\u5bf9\u6570\u503c\u5b57\u7b26\u4e32\u6392\u5e8f", url: "#_6" },
+              {title: "\u4e2d\u6587, \u82f1\u6587, \u6570\u5b57\u5b57\u7b26\u4e32\u6df7\u6392, \u6309\u7167\u6570\u503c\u5927\u5c0f\u5bf9\u6570\u503c\u5b57\u7b26\u4e32\u6392\u5e8f, \u4e14\u82f1\u6587\u6392\u5728\u6570\u5b57\u540e\u9762", url: "#_7" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="js">js 中文, 英文, 数字混排实现方案</h1>
+<h2 id="numer">numer 数组排序</h2>
+<pre><code class="language-js">const numbers = [12, 2, 34, 5, 44];
+numbers.sort();
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111205250.png" /></p>
+<p><strong>结果:</strong> 排序后的结果不是按照 number 值大小进行排序的</p>
+<p><strong>原因:</strong> Array.prototype.sort() 方法用原地算法对数组的元素进行排序，并返回数组。默认排序顺序是在将元素转换为字符串，然后比较它们的 UTF-16 代码单元值序列时构建的</p>
+<p><strong>解决方案:</strong></p>
+<pre><code class="language-js">const numbers = [12, 2, 34, 5, 44];
+numbers.sort((a, b) =&gt; a - b);
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111205900.png" /></p>
+<h2 id="_1">英文字符串排序</h2>
+<h3 id="_2">小写排序</h3>
+<pre><code class="language-js">const english = ['aa', 'jk', 'da', 'cd', 'fe'];
+english.sort();
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111210456.png" /></p>
+<p><strong>结果:</strong> 符合预期, 是按照英文字母的顺序进行排序的</p>
+<p><strong>原因:</strong> 英文字符的 acsii[unicode] 码顺序和字母的顺序一致</p>
+<h3 id="_3">大小写混排</h3>
+<pre><code class="language-js">const english = ['aa', 'jk', 'Ad', 'cd', 'Ce'];
+english.sort();
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111210858.png" /></p>
+<p><strong>结果:</strong> 大写在前, 小写在后</p>
+<p><strong>原因:</strong> 大写英文字符的 ascii[unicode] 码值在小写英文字母的前面</p>
+<p><strong>解决方案:</strong> 不区分大小写字母进行排序</p>
+<pre><code class="language-js">方案1: 
+const english = ['aa', 'jk', 'Ad', 'cd', 'Ce'];
+english.sort((a, b) =&gt; {
+    const aa = a.toLocaleLowerCase();
+    const bb = a.toLocaleLowerCase();
+    return aa.localeCompare(bb)
+});
+方案2: 
+const english = ['aa', 'jk', 'Ad', 'cd', 'Ce'];
+english.sort((a, b) =&gt; {
+    return a.localeCompare(b, undefined, {sensitivity: 'base'})
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111212424.png" /></p>
+<h2 id="_4">中文字符</h2>
+<pre><code class="language-js">const chinese = ['中国', '北京', '天津', '上海', '重庆'];
+chinese.sort();
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111212500.png" /></p>
+<p><strong>结果:</strong> 中文的排序不是按照中文首字母进行排序的 </p>
+<p><strong>原因:</strong> 中文的 unicode 码不是按照拼音顺序进行排序的
+<a href="https://github.com/shuntian/chinese-chartset/blob/master/docs/02_中文unicode.md">中文对应的 unicode 码</a>
+<a href="https://github.com/shuntian/chinese-chartset/blob/master/docs/01_中文拼音.md">中文对应的 拼音</a></p>
+<p><strong>解决方案:</strong></p>
+<pre><code class="language-js">const chinese = ['中国', '北京', '天津', '上海', '重庆'];
+chinese.sort((a, b) =&gt; {
+    return a.localeCompare(b);
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111214446.png" /></p>
+<p><strong>其他问题:</strong></p>
+<p><strong>问题1:</strong> 不同的 node 版本执行结果不一致
+<img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111215210.png" /></p>
+<p>目前测试 12 不一致, 14, 15, 16 都一致, node 版本高的话可以忽略这个问题</p>
+<p><strong>问题2:</strong> linux 下 和 macos 下 node, 输出结果不同</p>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111221226.png" /></p>
+<p><strong>问题2: 解决方案</strong></p>
+<pre><code class="language-js">const chinese = ['中国', '北京', '天津', '上海', '重庆'];
+chinese.sort((a, b) =&gt; {
+    return a.localeCompare(b, 'zh-Hans-CN');
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111221505.png" /></p>
+<h2 id="_5">中文, 英文, 数字字符串混排</h2>
+<pre><code class="language-js">const chinese = ['12', '112', 'dea', 'abs', '中国', '北京', '天津', '上海', '重庆', 'edea', '中a', '中国b', '北京1', '北京2', '北京12'];
+chinese.sort((a, b) =&gt; {
+    return a.localeCompare(b, 'zh-Hans-CN');
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230112071505.png" /></p>
+<p><strong>结果:</strong></p>
+<ol>
+<li>数字在前, 中文其次, 英文最后</li>
+<li>数字按照字符串的 unicode 编码进行比较, 而不是数值大小比较</li>
+<li>中文是按照拼音顺序进行排序的</li>
+<li>英文也是按照 unicode 编码排序的</li>
+</ol>
+<h2 id="_6">中文, 英文, 数字字符串混排, 按照数值大小对数值字符串排序</h2>
+<pre><code class="language-js">const chinese = ['12', '112', 'dea', 'abs', '中国', '北京', '天津', '上海', '重庆', 'edea', '中a', '中国b', '北京1', '北京2', '北京12'];
+
+chinese.sort((a, b) =&gt; {
+    return a.localeCompare(b, 'zh-Hans-CN', {numeric: true});
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230111225132.png" /></p>
+<h2 id="_7">中文, 英文, 数字字符串混排, 按照数值大小对数值字符串排序, 且英文排在数字后面</h2>
+<pre><code class="language-js">const chinese = ['12', '112', 'dea', 'abs', '中国', '北京', '天津', '上海', '重庆', 'edea', '中a', '中国q', '北京1', '北京2', '北京12'];
+const isLetterOrNumberReg = (str) =&gt; {
+    return /^[0-9a-zA-Z]+$/.test(str);
+}
+const isAllChineseStr = (str) =&gt; {
+    return /^[\u4E00-\u9FA5]+$/.test(str);
+};
+const splitStringByNumber = (str, sortByNumericalSize = false) =&gt; {
+  let strArr = [];
+  const REG_STRING_NUMBER_PARTS = /\d+|\D+/g;
+  const arr = str.match(REG_STRING_NUMBER_PARTS);
+  for (let i = 0; i &lt; arr.length; i++) {
+    const splitStr = arr[i];
+    if (isNaN(splitStr)) {
+      strArr = strArr.concat(splitStr.split(''));
+    } else {
+      // Whether to split numbers
+      if (!sortByNumericalSize) {
+        strArr = strArr.concat(splitStr.split(''));
+      } else {
+        strArr.push(splitStr);
+      }
+    }
+  }
+  return strArr;
+};
+chinese.sort((a, b) =&gt; {
+    // 都是数字或字母
+    if (isLetterOrNumberReg(a) &amp;&amp; isLetterOrNumberReg(b)) {
+        return a.localeCompare(b, 'zh-Hans-CN', {numeric: true}); 
+    }
+
+    // 中文字符串自己比较
+    if (isAllChineseStr(a) &amp;&amp; isAllChineseStr(b)) {
+        return a.localeCompare(b, 'zh-Hans-CN', {numeric: true});
+    }
+
+    const sortByNumericalSize = true;
+    const arrA = splitStringByNumber(a, sortByNumericalSize);
+    const arrB = splitStringByNumber(b, sortByNumericalSize);
+
+    let result = 0;
+    const length = Math.min(arrA.length, arrB.length);
+    for (let i = 0; i &lt; length; i++) {
+        const charA = arrA[i];
+        const charB = arrB[i];
+        // 数字, 字符串排在 中文前面
+        if (!isAllChineseStr(charA) &amp;&amp; isAllChineseStr(charB)) {
+            return -1;
+        }
+
+        if (isAllChineseStr(charA) &amp;&amp; !isAllChineseStr(charB)) {
+            return 1;
+        }
+
+        // 中文字符直接比较
+        if (isAllChineseStr(charA) &amp;&amp; isAllChineseStr(charB)) {
+            result = charA.localeCompare(charB, 'zh-Hans-CN');
+        } else {
+            // 都不是中文
+            result = charA.localeCompare(charB, 'zh-Hans-CN', {numeric: true});
+        }
+
+
+        if (result !== 0) {
+            return result;
+        }
+    }
+
+    // result === 0;
+    if (arrA.length &gt; arrB.length) return 1;
+    if (arrA.length &lt; arrB.length) return -1;
+    return 0;
+});
+</code></pre>
+<p><img alt="Img" src="../../../00_assets/images/01_%E4%B8%AD%E6%96%87%E8%8B%B1%E6%96%87%E6%95%B0%E5%AD%97%E6%B7%B7%E6%8E%92%E5%AE%9E%E7%8E%B0%E6%96%B9%E6%A1%88.md/img-20230114105951.png" /></p>
+<p>代码优化</p>
+<pre><code class="language-js">const chinese = ['12', '112', 'dea', 'abs', '中国', '北京', '天津', '上海', '重庆', 'edea', '中a', '中国q', '北京1', '北京2', '北京12'];
+const isLetterOrNumberReg = (str) =&gt; {
+    return /^[0-9a-zA-Z]+$/.test(str);
+}
+const isAllChineseStr = (str) =&gt; {
+    return /^[\u4E00-\u9FA5]+$/.test(str);
+};
+const splitStringByNumber = (str, sortByNumericalSize = false) =&gt; {
+  let strArr = [];
+  const REG_STRING_NUMBER_PARTS = /\d+|\D+/g;
+  const arr = str.match(REG_STRING_NUMBER_PARTS);
+  for (let i = 0; i &lt; arr.length; i++) {
+    const splitStr = arr[i];
+    if (isNaN(splitStr)) {
+      strArr = strArr.concat(splitStr.split(''));
+    } else {
+      // Whether to split numbers
+      if (!sortByNumericalSize) {
+        strArr = strArr.concat(splitStr.split(''));
+      } else {
+        strArr.push(splitStr);
+      }
+    }
+  }
+  return strArr;
+};
+const compare = (a, b, sortByNumericalSize = true) =&gt; {
+    // 都是数字或字母
+    if (isLetterOrNumberReg(a) &amp;&amp; isLetterOrNumberReg(b)) {
+        return a.localeCompare(b, 'zh-Hans-CN', {numeric: true}); 
+    }
+
+    // 中文字符串自己比较
+    if (isAllChineseStr(a) &amp;&amp; isAllChineseStr(b)) {
+        return a.localeCompare(b, 'zh-Hans-CN', {numeric: true});
+    }
+
+    const arrA = splitStringByNumber(a, sortByNumericalSize);
+    const arrB = splitStringByNumber(b, sortByNumericalSize);
+
+    let result = 0;
+    const length = Math.min(arrA.length, arrB.length);
+    for (let i = 0; i &lt; length; i++) {
+        const charA = arrA[i];
+        const charB = arrB[i];
+        // 数字, 字符串排在 中文前面
+        if (!isAllChineseStr(charA) &amp;&amp; isAllChineseStr(charB)) {
+            return -1;
+        }
+
+        if (isAllChineseStr(charA) &amp;&amp; !isAllChineseStr(charB)) {
+            return 1;
+        }
+
+        // 中文字符直接比较
+        if (isAllChineseStr(charA) &amp;&amp; isAllChineseStr(charB)) {
+            result = charA.localeCompare(charB, 'zh-Hans-CN');
+        } else {
+            // 都不是中文
+            result = charA.localeCompare(charB, 'zh-Hans-CN', {numeric: true});
+        }
+
+
+        if (result !== 0) {
+            return result;
+        }
+    }
+
+    // result === 0;
+    if (arrA.length &gt; arrB.length) return 1;
+    if (arrA.length &lt; arrB.length) return -1;
+    return 0;
+}
+chinese.sort((a, b) =&gt; compare(a, b, true));
+</code></pre>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../02_%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../02_%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8E%92%E5%BA%8F/" class="btn btn-xs btn-link">
+        字符串比较
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../" class="btn btn-xs btn-link">
+        简介
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+      <p>
+        <a href="https://github.com/shuntian/shuntian-frontend.git/edit/master/docs/01_knowledge/02_features/01_中文英文数字混排实现方案.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>

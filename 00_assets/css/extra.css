@@ -1,0 +1,29 @@
+body {
+  font-size: 16px;
+}
+
+.wm-top-title br {
+  display: none;
+}
+
+.wm-top-title span {
+  vertical-align: 2px;
+}
+
+html, 
+body {
+  height: 100%;
+}
+
+.wm-toc-hidden > .wm-toc-pane {
+    margin-left: -350px;
+}
+
+div.wm-page-content {
+  min-height: calc(100% - 58px);
+}
+
+.wm-page-content {
+  max-width: 800px;
+  position: relative;
+}

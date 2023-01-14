@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    
+    
+    <link rel="shortcut icon" href="../../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>python 安装与卸载 - ShunTian 前端</title>
+    <link href="../../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/highlight.css">
+    <link href="../../../00_assets/css/extra.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <script src="../../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../../js/highlight.pack.js"></script>
+    
+    <base target="_top">
+    <script>
+      var base_url = '../../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "python \u5b89\u88c5\u4e0e\u5378\u8f7d", url: "#_top", children: [
+              {title: "\u68c0\u67e5\u662f\u5426\u5b89\u88c5\u4e86python", url: "#python_1" },
+              {title: "\u5b89\u88c5 python", url: "#python_2" },
+              {title: "\u67e5\u770b python \u5b89\u88c5\u8def\u5f84", url: "#python_4" },
+              {title: "\u547d\u4ee4\u4f4d\u7f6e", url: "#_9" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../../js/base.js"></script> 
+</head>
+
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
+
+
+
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
+    
+
+    <h1 id="python">python 安装与卸载</h1>
+<h2 id="python_1">检查是否安装了python</h2>
+<p>查看电脑自带版本:</p>
+<pre><code class="language-bash"># python2
+python --version
+
+# python3
+python3 --version
+</code></pre>
+<p>python 都安装在哪里</p>
+<pre><code class="language-bash"># 如果是python2
+where python
+
+# 如果是 python3
+where python3
+</code></pre>
+<p>当前使用 python 版本</p>
+<pre><code class="language-bash">which python
+</code></pre>
+<h2 id="python_2">安装 python</h2>
+<h3 id="python_3">python 安装路径</h3>
+<table>
+<thead>
+<tr>
+<th>安装方式</th>
+<th>安装位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HomeBrew 安装</td>
+<td>/usr/local/Cellar/python</td>
+</tr>
+<tr>
+<td>官网下载安装</td>
+<td>/Library/Frameworks/Python.framework</td>
+</tr>
+<tr>
+<td>mac 自带 python 路径</td>
+<td>/System/Library/Frameworks/Python.framework/Version</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">方案一:</h3>
+<h4 id="_2">安装</h4>
+<pre><code class="language-bash">brew install python3
+</code></pre>
+<h4 id="_3">配置</h4>
+<p>方案一:</p>
+<ol>
+<li>如果没有 python 命令 和 pip 命令, 可以直接生成新的软链接</li>
+</ol>
+<pre><code class="language-bash">cp /usr/local/bin/python3 /usr/local/bin/python
+cp /usr/local/bin/pip3 /usr/local/bin/pip
+</code></pre>
+<ol>
+<li>查看 Python 版本:  python --version</li>
+<li>pip 查看版本: pip --version</li>
+</ol>
+<p>方案二:</p>
+<ol>
+<li>终端输入：vi ~/.zshrc</li>
+<li>直接 vi 打开进行编辑，编辑完保存</li>
+</ol>
+<pre><code class="language-bash">##python
+export PATH=&quot;/usr/local/Cellar/python@3.10/3.10.9/bin:${PATH}&quot;
+alias python=&quot;/usr/local/Cellar/python@3.10/3.10.9/bin/python3&quot;
+alias pip=&quot;/usr/local/Cellar/python@3.10/3.10.9/bin/pip3&quot;
+</code></pre>
+<ol>
+<li>中断输入：source ~/.zshrc</li>
+<li>查看 Python 版本:  python --version</li>
+<li>pip 查看版本: pip --version</li>
+</ol>
+<p><img alt="image-20230101103636949" src="../../../00_assets/images/python%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/image-20230101103636949.png" /></p>
+<h4 id="_4">卸载</h4>
+<pre><code>brew uninstall python3
+
+# 修改 .zshrc
+删除之前添加的软链接
+</code></pre>
+<h3 id="_5">方案二:</h3>
+<h4 id="_6">安装</h4>
+<ol>
+<li>官网下载：<a href="https://link.zhihu.com/?target=https%3A//www.python.org/downloads/">https://www.python.org/downloads/</a></li>
+<li>下载指定版本如: 3.8.7</li>
+<li>一路默认安装</li>
+</ol>
+<h4 id="_7"><strong>配置</strong></h4>
+<ol>
+<li>在终端输入：which python3.8，可查看快捷方式存在的路径，如图</li>
+</ol>
+<p><img alt="image-20230101091816647" src="../../../00_assets/images/python%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/image-20230101091816647.png" /></p>
+<ol>
+<li>安装路径：/Library/Frameworks/Python.framework</li>
+</ol>
+<p><img alt="image-20230101091909230" src="../../../00_assets/images/python%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/image-20230101091909230.png" /></p>
+<ol>
+<li>
+<p>终端输入：vi ~/.zshrc</p>
+</li>
+<li>
+<p>直接 vi 打开进行编辑，编辑完保存</p>
+</li>
+</ol>
+<pre><code>export PATH=&quot;/Library/Frameworks/Python.framework/Versions/3.8/bin:${PATH}&quot;
+alias python=&quot;/Library/Frameworks/Python.framework/Versions/3.8/bin/python3&quot;
+alias pip=&quot;/Library/Frameworks/Python.framework/Versions/3.8/bin/pip3&quot;
+</code></pre>
+<ol>
+<li>
+<p>中断输入：source ~/.zshrc</p>
+</li>
+<li>
+<p>查看 Python 版本:  python --version</p>
+</li>
+<li>
+<p>pip 查看版本: pip --version</p>
+</li>
+</ol>
+<p><img alt="image-20230101094254903" src="../../../00_assets/images/python%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/image-20230101094254903.png" /></p>
+<h4 id="_8">卸载</h4>
+<ol>
+<li>
+<p>Python3 安装完后，在系统中不同目录下存在各种依赖关系，若需卸载，需要一步步无残留完全卸载干净。</p>
+</li>
+<li>
+<p>删除Python 3.8 框架，打开终端，输入</p>
+</li>
+</ol>
+<pre><code class="language-bash">sudo rm -rf /Library/Frameworks/Python.framework/Versions/3.8
+</code></pre>
+<ol>
+<li>删除 Python 3.8 应用目录</li>
+</ol>
+<pre><code class="language-bash">cd /Applications
+
+sudo rm -rf Python 3.8
+</code></pre>
+<ol>
+<li>删除/usr/local/bin 目录下指向的Python3.8 的连接</li>
+</ol>
+<pre><code class="language-bash">cd /usr/local/bin/
+# 显示软链
+ls -l /usr/local/bin
+
+# 删除相关的软链
+# Python3.8 相关的文件和链接需要自行确认是否删除
+rm python3.8
+rm pip3.8
+rm pydoc3.8
+rm python3.8-config
+</code></pre>
+<ol>
+<li>删除 Python 的环境路径</li>
+</ol>
+<pre><code class="language-bash">vi ~/.bash_profile
+</code></pre>
+<ol>
+<li>确认python 是否已经删除</li>
+</ol>
+<pre><code class="language-bash">python3.8
+-bash: python3.8: command not found
+</code></pre>
+<h2 id="python_4">查看 python 安装路径</h2>
+<pre><code class="language-bash"># 输入命令
+python
+
+# 输入代码
+&gt;&gt;&gt; import sys
+&gt;&gt;&gt; sys.path
+
+</code></pre>
+<p><img alt="image-20230101090210917" src="../../../00_assets/images/python%E5%AE%89%E8%A3%85%E4%B8%8E%E5%8D%B8%E8%BD%BD/image-20230101090210917.png" /></p>
+<h2 id="_9">命令位置</h2>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统命令</td>
+<td>/usr/bin</td>
+</tr>
+<tr>
+<td>用户默认命令</td>
+<td>/usr/local/bin (brew 安装的命令默认在这个路径下)</td>
+</tr>
+</tbody>
+</table>
+
+  <br>
+    
+
+    
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../02_mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%89%8D%E7%BC%80%E4%BF%AE%E6%94%B9_zsh/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../02_mac%E7%BB%88%E7%AB%AF%E5%91%BD%E4%BB%A4%E5%89%8D%E7%BC%80%E4%BF%AE%E6%94%B9_zsh/" class="btn btn-xs btn-link">
+        Mac 终端命令前缀修改 zsh
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../" class="btn btn-xs btn-link">
+        简介
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
+</div>
+
+<footer class="container-fluid wm-page-content">
+      <p>
+        <a href="https://github.com/shuntian/shuntian-frontend.git/edit/master/docs/01_knowledge/01_tools/01_python安装与卸载.md"><i class="fa fa-github"></i>
+Edit on GitHub</a>
+      </p>
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
+</html>
